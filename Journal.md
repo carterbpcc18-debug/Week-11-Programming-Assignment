@@ -31,3 +31,15 @@ The `catch` block is responsible for handling errors when they occur, while the 
 **Describe a real-world scenario where a finally block would be critical for a program's stability.**
 
 A good example would be a program that opens a file to read or modify information. If an error occurs while processing the file, the program still needs to close it properly. A `finally` block can ensure that the file is closed whether the operation succeeds or fails. This helps prevent resources from being left open unnecessarily.
+
+
+
+# Phase 4: The Audit Suite
+
+**Why is automated testing more reliable than manual testing when verifying that your code "crashes" correctly?**
+
+Automated testing is more reliable because it allows the same scenarios to be checked consistently without relying on someone manually entering different values every time. It also makes it easier to identify whether a function throws the correct error or produces an unexpected result. In this phase, I created tests for successful access, missing keys, corrupted keys, and incorrect passwords.
+
+**What did you learn about the flow of execution when an error is thrown and caught?**
+
+I learned that throwing an error interrupts the normal execution of a function and transfers control to the nearest matching `catch` block. The catch block can then identify the error and handle it appropriately. I also learned that custom error classes make it possible to distinguish between different types of problems using `instanceof`.

@@ -46,8 +46,55 @@ function attemptEntry(key) {
     }
 }
 
-// Test the vault with different keys
+// Runs an individual test and reports the result
+function runTest(testName, testFunction) {
+    try {
+        if (testFunction()) {
+            console.log("PASS: " + testName);
+        } else {
+            console.log("FAIL: " + testName);
+        }
+    } catch (e) {
+        console.log("FAIL: " + testName);
+    }
+}
+
+// Tests successful vault access
+function testCorrectKey() {
+    return accessVault("SECRET_123") === "Access Granted";
+}
+
+// Tests whether an invalid key throws InvalidKeyError
+function testInvalidKey(key) {
+    try {
+        accessVault(key);
+        return false;
+    } catch (e) {
+        return e instanceof InvalidKeyError;
+    }
+}
+
+// Tests whether an incorrect key throws VaultLockedError
+function testWrongKey() {
+    try {
+        accessVault("WRONG_KEY");
+        return false;
+    } catch (e) {
+        return e instanceof VaultLockedError;
+    }
+}
+
+// Demonstrates normal vault access attempts
+console.log("=== Vault Access Demonstrations ===");
 attemptEntry("SECRET_123");
 attemptEntry("WRONG_KEY");
 attemptEntry(undefined);
 attemptEntry(NaN);
+
+// Runs the automated audit tests
+console.log("\n=== Automated Audit Tests ===");
+
+runTest("Correct key grants access", testCorrectKey);
+runTest("Undefined key throws InvalidKeyError", () => testInvalidKey(undefined));
+runTest("NaN key throws InvalidKeyError", () => testInvalidKey(NaN));
+runTest("Wrong key throws VaultLockedError", testWrongKey);
