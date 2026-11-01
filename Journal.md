@@ -19,3 +19,15 @@ Returning a value allows a function to finish normally and provide a result to t
 **Why would a developer prefer throwing a custom error class over a generic Error?**
 
 Custom error classes allow developers to identify exactly what type of problem occurred. Instead of treating every issue the same way, the program can distinguish between a missing or corrupted key and an incorrect password. This makes error handling more organized and allows different problems to receive different responses.
+
+
+
+# Phase 3: The Safety Protocol
+
+**How does the finally block behave differently than the catch block?**
+
+The `catch` block is responsible for handling errors when they occur, while the `finally` block executes regardless of whether an error happens. In this phase, I used `catch` to identify the different custom errors and display appropriate messages. I used `finally` to confirm that every vault access attempt was completed.
+
+**Describe a real-world scenario where a finally block would be critical for a program's stability.**
+
+A good example would be a program that opens a file to read or modify information. If an error occurs while processing the file, the program still needs to close it properly. A `finally` block can ensure that the file is closed whether the operation succeeds or fails. This helps prevent resources from being left open unnecessarily.
