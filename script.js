@@ -84,17 +84,26 @@ function testWrongKey() {
     }
 }
 
-// Demonstrates normal vault access attempts
+// Demonstrates vault access attempts
 console.log("=== Vault Access Demonstrations ===");
 attemptEntry("SECRET_123");
 attemptEntry("WRONG_KEY");
 attemptEntry(undefined);
 attemptEntry(NaN);
 
-// Runs the automated audit tests
+// Runs automated audit tests
 console.log("\n=== Automated Audit Tests ===");
 
 runTest("Correct key grants access", testCorrectKey);
 runTest("Undefined key throws InvalidKeyError", () => testInvalidKey(undefined));
 runTest("NaN key throws InvalidKeyError", () => testInvalidKey(NaN));
 runTest("Wrong key throws VaultLockedError", testWrongKey);
+
+// Performs additional manual validation
+console.log("\n=== Manual Validation Tests ===");
+
+attemptEntry("");
+attemptEntry(12345);
+attemptEntry(null);
+attemptEntry({});
+attemptEntry([]);

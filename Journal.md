@@ -43,3 +43,15 @@ Automated testing is more reliable because it allows the same scenarios to be ch
 **What did you learn about the flow of execution when an error is thrown and caught?**
 
 I learned that throwing an error interrupts the normal execution of a function and transfers control to the nearest matching `catch` block. The catch block can then identify the error and handle it appropriately. I also learned that custom error classes make it possible to distinguish between different types of problems using `instanceof`.
+
+
+
+# Phase 5: Validation & Reflection
+
+**What bugs or unexpected behaviors did you catch while testing your program?**
+
+During testing, I checked several different inputs, including empty strings, numbers, null, objects, and arrays. I confirmed that these values were handled as incorrect keys and produced the expected user error message instead of causing the program to crash. I also verified that undefined and NaN continued to produce the InvalidKeyError. The additional testing helped confirm that the vault handles different types of input consistently.
+
+**If you asked an AI tutor for feedback, what did it suggest, and did you choose to make any changes? Explain your reasoning.**
+
+I used AI feedback to review the structure of my program and check whether it met the assignment requirements. The review helped confirm that my custom error classes, try/catch/finally structure, and automated tests were organized correctly. I kept the implementation relatively simple because I wanted to use concepts covered in class rather than introduce unnecessary advanced syntax.
